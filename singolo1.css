@@ -97,6 +97,7 @@ body {
 .slider {
   display: grid;
   grid-template-columns: 16px auto 16px;
+  grid-template-rows: auto 6px;
   background: #f06c64;
   width: 100%;
   height: 600px;
@@ -126,12 +127,23 @@ body {
 .slider__phoneH {
   margin: 169px 0 0 66px;
 }
+.slider__bottom {
+  background: #ea676b;
+  height: 6px;
+  grid-column: 1/4;
+}
 
 .services {
   width: auto;
   height: 500px;
   padding: 40px;
   padding-right: 10px;
+  background-color: #f2f2f2;
+}
+.services__bottom {
+  background: #fff;
+  height: 6px;
+  width: 100%;
 }
 .services__content h1 {
   font-size: 29.8px;
@@ -151,6 +163,7 @@ body {
   font-weight: 300;
   text-align: left;
   margin: 25.5px 0 0 0;
+  letter-spacing: 0px;
 }
 .services__box {
   display: grid;
@@ -158,28 +171,27 @@ body {
   margin: -18px 0px 30px 0px;
 }
 .services__list {
-  margin: 65px 0 0 0;
+  margin: 64px 0 0 0;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, 320px);
   padding-left: 0;
 }
 .services__picture {
-  width: 62px;
-  height: 62px;
+  width: 55px;
+  height: 55px;
   margin-right: 10px;
+  border: solid 2px #666d89;
+  border-radius: 50%;
 }
 .services__picture :first-child {
-  position: absolute;
-}
-.services__picture :nth-child(2n) {
   position: relative;
-  top: 13px;
-  left: 14px;
+  top: 11.5px;
+  left: 12px;
 }
 .services__text {
-  padding-left: 9px;
-  width: 85%;
+  padding-left: 10px;
+  width: 88%;
   justify-content: start;
 }
 .services__text h1 {
@@ -199,7 +211,7 @@ body {
   font-weight: 400;
   text-align: left;
   word-break: break-all;
-  margin: 9px 0 20px 0;
+  margin: 10px 0 20px 0;
 }
 
 .hoverScl:hover {
