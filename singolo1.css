@@ -201,3 +201,15 @@ body {
   word-break: break-all;
   margin: 9px 0 20px 0;
 }
+
+.hoverScl:hover {
+  transform: scale(1.05);
+}
+
+.hoverBigScl:hover {
+  transform: scale(1.2);
+}
+
+.a {
+  transition: 0.2s ease-out all;
+}
