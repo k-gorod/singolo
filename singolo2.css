@@ -1,0 +1,78 @@
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.page {
+  width: 1020px;
+  height: 100%;
+  margin: 0px auto;
+}
+
+.portfolio {
+  height: 800px;
+  background: #2d303a;
+  margin: 0;
+  padding: 69px 0 0 0;
+}
+.portfolio__head {
+  margin: 0 0 10px 40px;
+}
+.portfolio__head h1 {
+  font-size: 30px;
+  line-height: 18px;
+  color: #666d89;
+  font-family: "Lato";
+  font-weight: 900;
+  text-align: left;
+  margin: 0 0 27px 0;
+  letter-spacing: -0.2px;
+}
+.portfolio__head p {
+  font-size: 18px;
+  line-height: 30px;
+  color: #767e9e;
+  font-family: "Lato";
+  font-weight: 300;
+  text-align: left;
+  margin: 0 0 11px 0;
+}
+.portfolio__categories {
+  margin: 0 0 0px 40px;
+}
+.portfolio__categories button {
+  outline: 0 !important;
+  height: 22px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #666d89;
+  margin: 0 5px 0 1px;
+}
+.portfolio__categories button:active {
+  border: 1px solid #c5c5c5;
+}
+.portfolio__categories button:active p {
+  color: #c5c5c5;
+}
+.portfolio__categories button p {
+  margin: 0;
+  font-size: 12px;
+  color: #767e9e;
+  font-family: "Lato";
+  font-weight: 400;
+  text-align: left;
+}
+.portfolio__grid {
+  margin: 19px 0 10px 40px;
+  display: grid;
+  grid-template-columns: 220px 220px 220px 220px;
+  grid-template-rows: 187px 187px 187px;
+  grid-gap: 20px;
+}
+.portfolio__cell {
+  overflow: hidden;
+}
