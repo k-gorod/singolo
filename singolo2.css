@@ -186,7 +186,7 @@ body {
   height: 30px;
   border: solid #717791 1px;
   border-radius: 50%;
-  margin: 23px 7px 0 1px;
+  margin: 22px 7px 0 1px;
 }
 .about__links li:hover {
   transform: translateY(-5px) scale(1.2);
