@@ -3,30 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="singolo3.css">
+    <link rel="stylesheet" href="assets/font.css">
     <title>Singolo</title>
 </head>
 <body>
     <main class="page">
         <section class="quote">
             <div class="quote__head">
-                <h1></h1>
-                <p></p>
+                <h1>Get a Quote</h1>
+                <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
             </div>
-            <form action="" method="get">
-
+            <form action="" method="POST">
+                <input type="text" name="name" placeholder="Name (Required)" required>
+                <input type="email" name="email" id="email" placeholder="Email (Required)" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+                <textarea type="text" name="describe" placeholder="Describe your project in detail..." required></textarea>
+                <button type="submit">Submit</button>
             </form>
             <div class="info">
-                <h1></h1>
-                <p></p>
+                <h1>Contact Information</h1>
+                <p>Quisque hendrerit purus dapibus, ornare nibh vitae, viverra nibh. Fusce vitae aliquam tellus. Proin sit amet volutpat libero. Nulla sed nunc et tortor luctus faucibus. Morbi at aliquet turpis, et consequat felis. </p>
                 <div class="info__contacts">
-                    <div><img src="" alt=""><a href=""></a></div>
-                    <div><img src="" alt=""><a href=""></a></div>
-                    <div><img src="" alt=""><a href=""></a></div>
+                    <div><span><img src="assets/location.png" alt=""></span><a href="">Elm St. 14/05 Lost City </a></div>
+                    <div><span><img src="assets/phone.png" alt=""></span><a href="">03528 331 86 35</a></div>
+                    <div><span><img src="assets/mail.png" alt=""></span><a href="">info@singolo.com</a></div>
                 </div>
             </div>
         </section>
+        <div class="quote__bottom"></div>
         <footer class="bottom">
-            <p></p>
+            <div class="bottom__text">© Copyright 2013</div>
             <ul class="bottom__links a">
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
