@@ -601,3 +601,7 @@ body {
 .hide {
   display: none;
 }
+
+.border {
+  box-shadow: 0 0 30px #F06C64;
+}

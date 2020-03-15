@@ -5,7 +5,6 @@ window.onload = function() {
 window.onscroll = function() {
     interactiveLogo();
 }
-
 const navMove = () => {
     document.getElementsByClassName("header__navigation")[0].addEventListener('mousedown',(e) => {
         if(e.target!=document.getElementsByClassName("header__navigation")[0]){
@@ -46,17 +45,23 @@ const interactiveLogo = () => {
 }
 const interactivePictures = () => {
     var cellList =document.getElementsByClassName("portfolio__cell");
-    for (let i = 0; i < cellList.length; i++) {
-        if(i>11){cellList[i].classList.add("hide");}
+    var cellGrid =document.getElementsByClassName("portfolio__grid")[0];
+    setVisibleItems(cellList,12);
+    cellGrid.addEventListener('mousedown',(e)=>{
+        setActive(cellList,e.target.parentElement,"border");
+   })
+}
+const setActive = (arr,active,setClass) => {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].classList.remove(setClass);
     }
-    cellList.forEach(e =>{
-        e.addEventListener("mousedown",() =>{
-            cellList.forEach(e=>{e.style = "border:none"})
-            e.style = "border:solid 5px #F06C64"
-        })
-    })
-    // document.getElementsByClassName("portfolio__cell")[0].addEventListener('mousedown',() => {
-    //     document.getElementsByClassName("portfolio__grid")[0].style ="overflow: visible";   
-    // })
-    //document.getElementsByClassName("portfolio__grid")[0].style ="overflow: visible";
+    active.classList.add(setClass);
+}
+const setVisibleItems = (arr,n) => {
+    for (let i = 0; i < arr.length; i++) {
+        if(i>n-1){arr[i].classList.add("hide");}
+        else {
+            arr[i].addEventListener
+        }
+    }
 }
