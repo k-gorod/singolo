@@ -23,22 +23,32 @@ body {
   padding: 0 40px;
   background: #2d303a;
   height: 100%;
-  display: flex;
   justify-content: space-between;
 }
 .header__singolo {
+  position: fixed;
+  top: 14px;
+  z-index: 5;
   margin: auto 0;
 }
 .header__singolo h1 {
   font-size: 24.3px;
   color: #ffffff;
   font-family: "Lato";
-  overflow: hidden;
+  overflow: visible;
   font-weight: 700;
   text-align: left;
   cursor: default;
 }
+.header__singolo h1::selection {
+  background: transparent;
+}
+.header__singolo h1:hover {
+  cursor: pointer;
+}
 .header__navigation {
+  position: relative;
+  top: 30px;
   float: right;
   margin: auto 0;
 }
@@ -137,15 +147,11 @@ body {
 
 .services {
   width: auto;
-  height: 420px;
+  height: 414px;
   padding: 40px;
   padding-right: 10px;
   background-color: #f2f2f2;
-}
-.services__bottom {
-  background: #fff;
-  height: 6px;
-  width: 100%;
+  border-bottom: solid 6px #fff;
 }
 .services__content h1 {
   font-size: 29.8px;
@@ -217,6 +223,7 @@ body {
   text-align: left;
   word-break: break-all;
   margin: 9px 0 20px 0;
+  height: 65px;
 }
 
 .hoverScl:hover {
@@ -283,7 +290,6 @@ body {
   text-align: left;
 }
 .portfolio__grid {
-  overflow: hidden;
   max-height: 77%;
   margin: 19px 0 10px 40px;
   display: grid;
@@ -423,7 +429,7 @@ body {
   align-items: flex-start;
   height: 579px;
   background: #f06c64;
-  padding: 69px 40px 0 40px;
+  padding: 68px 40px 0 40px;
 }
 .quote__head {
   margin: 0 0 10px 0px;
@@ -590,4 +596,8 @@ body {
 
 .a *, .a {
   transition: 0.2s ease-out all;
+}
+
+.hide {
+  display: none;
 }
