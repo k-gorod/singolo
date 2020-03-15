@@ -1,12 +1,24 @@
 window.onload = function() {
-    navMove();
+    activeNav();
+    moveNav();
     interactiveCategories();
     interactivePictures();
     }
 window.onscroll = function() {
     interactiveLogo();
 }
-const navMove = () => {
+const activeNav = ()=>{
+    var nav = document.getElementsByClassName("header__list")[0];
+        
+    
+    nav.addEventListener('mousedown',(e)=>{
+        var active=e.target;
+        if(e.target.tagName=="A"){active=e.target.parentElement}
+        setActive(nav.children,active,"activeNav")
+    })
+    
+}
+const moveNav = () => {
     document.getElementsByClassName("header__navigation")[0].addEventListener('mousedown',(e) => {
         if(e.target!=document.getElementsByClassName("header__navigation")[0]){
         movePage(e.target.innerText.toLowerCase());}

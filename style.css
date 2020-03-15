@@ -70,6 +70,9 @@ body {
 .header__navigation ul a:hover {
   color: pink;
 }
+.header__navigation ul .activeNav a {
+  color: #F06C64 !important;
+}
 .header__navigation ul li {
   position: relative;
 }
@@ -93,9 +96,6 @@ body {
 }
 .header__navigation ul li:last-child:after {
   display: none;
-}
-.header__navigation ul li:first-child span:hover {
-  color: red;
 }
 .header span {
   color: #f06c64;
