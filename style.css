@@ -264,30 +264,35 @@ body {
   margin: 0 0 11px 0;
 }
 .portfolio__categories {
+  display: flex;
   margin: 0 0 0px 40px;
+  align-items: center;
 }
-.portfolio__categories button {
-  outline: 0 !important;
-  height: 22px;
+.portfolio__categories .button {
+  height: 20px;
   border-radius: 5px;
   background-color: transparent;
   border: 1px solid #666d89;
-  margin: 0 5px 0 1px;
+  margin: 0 9px 0 1px;
 }
-.portfolio__categories button:hover, .portfolio__categories button:active {
+.portfolio__categories .button:hover {
   border: 1px solid #c5c5c5;
 }
-.portfolio__categories button:hover p, .portfolio__categories button:active p {
+.portfolio__categories .button:hover p {
   color: #c5c5c5;
 }
-.portfolio__categories button p {
-  margin: 0;
+.portfolio__categories .button p {
+  margin: 2px 6px 0;
   font-size: 12px;
   color: #767e9e;
   font-family: "Lato";
   overflow: hidden;
   font-weight: 400;
   text-align: left;
+  cursor: default;
+}
+.portfolio__categories .button p::selection {
+  background: transparent;
 }
 .portfolio__grid {
   max-height: 77%;
@@ -604,4 +609,12 @@ body {
 
 .activePic {
   box-shadow: 0 0 30px #F06C64;
+}
+
+.activeCat {
+  border: 1px solid #c5c5c5 !important;
+  box-shadow: 0 0 10px cyan;
+}
+.activeCat p {
+  color: #c5c5c5 !important;
 }

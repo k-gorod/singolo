@@ -1,5 +1,6 @@
 window.onload = function() {
     navMove();
+    interactiveCategories();
     interactivePictures();
     }
 window.onscroll = function() {
@@ -43,13 +44,26 @@ const interactiveLogo = () => {
     }
     
 }
+const interactiveCategories = () => {
+    var categories = document.getElementsByClassName("portfolio__categories")[0];
+    categories.addEventListener('mousedown', (e)=>{
+        console.log(e.target.tagName);
+        var cls = "activeCat";
+        var active;
+        if(e.target.tagName=="P"){active=e.target.parentElement}
+        if(e.target.tagName=="DIV"){active=e.target}
+        if(e.target.tagName=="NAV"||active.classList.contains(cls)){active=null}
+        setActive(categories.children,active,cls)
+    })
+}
 const interactivePictures = () => {
     var cellList =document.getElementsByClassName("portfolio__cell");
     var cellGrid =document.getElementsByClassName("portfolio__grid")[0];
     setVisibleItems(cellList,12);
     cellGrid.addEventListener('mousedown',(e)=>{
-        if(e.target.parentElement.classList.length>1){setActive(cellList,null,"activePic")}
-        else{setActive(cellList,e.target.parentElement,"activePic")}
+    var cls = "activePic" ;
+    if(e.target.parentElement.classList.contains(cls)||e.target.tagName=="DIV"){setActive(cellList,null,cls)}
+    else{setActive(cellList,e.target.parentElement,cls)}
         
    })
 }
