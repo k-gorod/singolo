@@ -47,24 +47,48 @@ const interactiveLogo = () => {
 const interactiveCategories = () => {
     var categories = document.getElementsByClassName("portfolio__categories")[0];
     categories.addEventListener('mousedown', (e)=>{
-        console.log(e.target.tagName);
         var cls = "activeCat";
         var active;
         if(e.target.tagName=="P"){active=e.target.parentElement}
         if(e.target.tagName=="DIV"){active=e.target}
         if(e.target.tagName=="NAV"||active.classList.contains(cls)){active=null}
+        if(active){picSort(active.children[0].innerText.split(" ")[0])}
         setActive(categories.children,active,cls)
+        
+
     })
+    
 }
+const picSort = (cat) => {
+    var cellList =document.getElementsByClassName("portfolio__cell");
+    hideAll(cellList);
+    setVisibleItems(cellList,cat.toLowerCase());
+
+}
+const hideAll = (arr) =>{
+    for (let i = 0; i < arr.length; i++) {
+        if(!arr[i].classList.contains("hide")){arr[i].classList.add("hide")}
+        
+    }
+}
+const setVisibleItems = (arr,cat) => {
+    var n=0;
+    
+    for (let i = 0; i < arr.length; i++) {
+        if(arr[i].classList.contains(cat)&&n<12){n++;arr[i].classList.remove("hide");}
+    }
+    
+}
+
 const interactivePictures = () => {
     var cellList =document.getElementsByClassName("portfolio__cell");
     var cellGrid =document.getElementsByClassName("portfolio__grid")[0];
-    setVisibleItems(cellList,12);
+    setVisibleItems(cellList,"all");
     cellGrid.addEventListener('mousedown',(e)=>{
     var cls = "activePic" ;
     if(e.target.parentElement.classList.contains(cls)||e.target.tagName=="DIV"){setActive(cellList,null,cls)}
     else{setActive(cellList,e.target.parentElement,cls)}
-        
+    
    })
 }
 const setActive = (arr,active,setClass) => {
@@ -72,12 +96,4 @@ const setActive = (arr,active,setClass) => {
         arr[i].classList.remove(setClass);
     }
     if(active){active.classList.add(setClass)}
-}
-const setVisibleItems = (arr,n) => {
-    for (let i = 0; i < arr.length; i++) {
-        if(i>n-1){arr[i].classList.add("hide");}
-        else {
-            arr[i].addEventListener
-        }
-    }
 }
