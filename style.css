@@ -512,7 +512,7 @@ body {
   font-family: "Lato";
   overflow: hidden;
   font-weight: 400;
-  text-align: left;
+  text-align: justify;
   margin: 11px 0 0 0;
 }
 .quote .info__contacts {
