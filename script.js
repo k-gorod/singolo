@@ -48,14 +48,16 @@ const interactivePictures = () => {
     var cellGrid =document.getElementsByClassName("portfolio__grid")[0];
     setVisibleItems(cellList,12);
     cellGrid.addEventListener('mousedown',(e)=>{
-        setActive(cellList,e.target.parentElement,"border");
+        if(e.target.parentElement.classList.length>1){setActive(cellList,null,"activePic")}
+        else{setActive(cellList,e.target.parentElement,"activePic")}
+        
    })
 }
 const setActive = (arr,active,setClass) => {
     for (let i = 0; i < arr.length; i++) {
         arr[i].classList.remove(setClass);
     }
-    active.classList.add(setClass);
+    if(active){active.classList.add(setClass)}
 }
 const setVisibleItems = (arr,n) => {
     for (let i = 0; i < arr.length; i++) {

@@ -602,6 +602,6 @@ body {
   display: none;
 }
 
-.border {
+.activePic {
   box-shadow: 0 0 30px #F06C64;
 }
