@@ -3,6 +3,7 @@ window.onload = function() {
     moveNav();
     interactiveCategories();
     interactivePictures();
+    form();
     }
 window.onscroll = function() {
     interactiveLogo();
@@ -108,4 +109,40 @@ const setActive = (arr,active,setClass) => {
         arr[i].classList.remove(setClass);
     }
     if(active){active.classList.add(setClass)}
+}
+var form = () => {
+    var form = document.getElementsByTagName('form')[0];
+    form.getElementsByTagName('button')[0].addEventListener("mouseup", (e)=>{
+    var name = form.name.value;
+    var email = form.email.value;
+    var subject = form.subject.value;
+    var describe= form.describe.value;
+    showMsg(name,email,subject,describe);
+    })
+    
+}
+var showMsg = (name,email,subject,desctibe) => {
+    var msg = document.getElementsByClassName("msg")[0];
+    var ok = msg.getElementsByClassName('button')[0];
+    var p=msg.children[0].children;
+    p[0].innerText = "Письмо отправлено";
+    p[1].innerText ="Без темы";
+    p[2].innerText ="Без описания";
+    if(name&&/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+        write(p[1],subject,"Тема:  ")
+        write(p[2],desctibe,"Описание:  ")
+    }else{write(p[1]," "),write(p[2]," "),write(p[0]," ")}
+    if(!name){write(p[0],"Введите имя")}
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)==false){write(p[1],"Введите корректно email")}
+    
+    msg.classList.remove('hide');
+    ok.addEventListener('mouseup',(e)=>{
+        msg.classList.add('hide');
+        
+    })
+    
+}
+const write = (node,text,pre) => {
+    if(!pre)pre="";
+    if(text){node.innerText = pre+text}
 }
