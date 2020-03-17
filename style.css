@@ -37,6 +37,7 @@ img {
   margin: auto 0;
 }
 .header__singolo h1 {
+  margin-bottom: 0;
   font-size: 24.3px;
   color: #ffffff;
   font-family: "Lato";
@@ -498,9 +499,12 @@ img {
   padding: 0;
   outline: none;
 }
+.quote form :nth-child(5):hover {
+  background: #f0a39e;
+}
 .quote form :nth-child(5):active {
-  border: solid 0.5px red;
-  box-shadow: 0 0 6px red;
+  border: solid 0.5px #923d38;
+  box-shadow: 0 0 6px #923d38;
 }
 .quote .info {
   min-width: 300px;
@@ -630,24 +634,26 @@ img {
 }
 
 .msg {
+  opacity: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 9;
   position: fixed;
   top: 0;
   right: 0;
+  transition: 0.5s opacity ease-in-out;
 }
 .msg__window {
-  padding: 10px;
+  padding: 15px 10px 5px;
   position: relative;
   z-index: 10;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transition: 0.4s transform ease-out;
+  transform: translate(-1800px, -1000px);
   width: 30%;
   border-radius: 20px;
-  border: 2px solid #f0a39e;
   box-shadow: 0 0 20px #f0a39e;
   background: #dabbbc;
   opacity: 1;
@@ -655,7 +661,8 @@ img {
   flex-direction: column;
 }
 .msg__window * {
-  margin: 10px 0 10px;
+  margin: 10px 0 8px;
+  padding-bottom: 2px;
   align-self: center;
   cursor: default;
   font-size: 20px;
@@ -667,9 +674,17 @@ img {
   max-width: 90%;
   -webkit-user-select: none;
           user-select: none;
+  border-bottom: 2px groove #F06C64;
 }
 .msg__window :nth-child(4) {
   border-radius: 10px;
   outline: none;
   background: #f0a39e;
+}
+
+.ghostMsg {
+  opacity: 1;
+}
+.ghostMsg div {
+  transform: translate(-50%, -50%);
 }
