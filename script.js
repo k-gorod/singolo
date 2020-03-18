@@ -1,59 +1,79 @@
 window.onload = function() {//Действия после загрузки страницы
-    activeNav();
+    
     moveNav();
+    activeNav();
     interactiveCategories();
     interactivePictures();
     form();
-    }
-window.onscroll = function() {//Реакция на скролл
-    interactiveLogo();
+    
 }
-const activeNav = ()=>{//Выбор активного нава
+window.onscroll = function() {//Реакция на скролл
+    interactiveHeader();
+    
+}
+const activeNav = ()=>{
     var nav = document.getElementsByClassName("header__list")[0];
+    var p = document.getElementsByClassName('page')[0];
+    nav.parentElement.style = "right:"+(window.innerWidth-p.getBoundingClientRect().right+23)+"px";
     nav.addEventListener('mousedown',(e)=>{
         var active=e.target;
-        if(e.target.tagName=="A"){active=e.target.parentElement}//Обработка миссклика
-        setActive(nav.children,active,"activeNav")//Присвоение активного класса активированному элементу
+        
+        if(e.target.tagName=="DIV"){active=e.target.parentElement}
+        setActive(nav.children,active,"activeNav")
     })
 }
-const moveNav = () => {//Движение по нажатию на Nav
+const moveNav = () => {
     document.getElementsByClassName("header__navigation")[0].addEventListener('mousedown',(e) => {
-        if(e.target!=document.getElementsByClassName("header__navigation")[0]){//Обработка миссклика
-        movePage(e.target.innerText.toLowerCase());}//Скользим к блоку, соответствующему нажатому тексту нав элемента
-    })
+        if(e.target!=document.getElementsByTagName("NAV")[0]&&e.target!=document.getElementsByTagName("UL")[0]){
+            //^Обработка мисскликов
+        movePage(e.target.innerText.toLowerCase());}})
 }
 
-const movePage = (str) => {//Скольжение страницы к заданному маркеру
+const movePage = (str) => {
     document.getElementsByClassName(str)[0].scrollIntoView({behavior: "smooth"})
 }
 
-const interactiveLogo = () => {//Красивый логотип. При нажатии плавно возвращает страницу в исходное состояние
+const interactiveHeader = () => {
     var logo=document.getElementsByClassName("header__singolo")[0];
+    var navs=document.getElementsByClassName("header__list")[0].children;
     logo.addEventListener('mousedown',() => {
         movePage("home");
     })
     if(document.documentElement.scrollTop<=80){
-        logo.children[0].style = defaultStatus;
         logo.children[0].children[0].style = defaultStatus;
-        logo.addEventListener('mouseover',() => {
-            logo.children[0].style = defaultStatus;
-        })
-        logo.addEventListener('mouseleave',() => {
-            logo.children[0].style = defaultStatus;
-        })
+        navOnHome(logo);
+        for (let i = 0; i < navs.length; i++) {
+            navOnHome(navs[i]);
+        }
     }
     if(document.documentElement.scrollTop>80){
-        logo.children[0].style = "opacity: 0.5; color:rgb(177, 60, 80)"
         logo.children[0].children[0].style = "display:none";
-            logo.addEventListener('mouseover',() => {
-                logo.children[0].style = "opacity: 1; color:rgb(177, 60, 80);text-shadow: 0 0 2px red;transform: scale(1.09) translate(3px,3px)"
-            })
-            logo.addEventListener('mouseleave',() => {
-                logo.children[0].style = "opacity: 0.5; color:rgb(177, 60, 80)";
-            })
+        navOnScrole(logo);
+        for (let i = 0; i < navs.length; i++) {
+            navOnScrole(navs[i]);
+        }
+    }
+}
+const navOnScrole = (elem) => {
+    elem.children[0].style = "opacity: 0.5; color:rgb(177, 60, 80)"
+        elem.addEventListener('mouseover',() => {
+                elem.children[0].style = "opacity: 1; color:rgb(177, 60, 80);text-shadow: 0 0 2px red;transform: scale(1.09) translate(0,3px)"
+        })
+            elem.addEventListener('mouseleave',() => {
+                elem.children[0].style = "opacity: 0.5; color:rgb(177, 60, 80)";
+        })
+}
+const navOnHome = (elem) => {
+        elem.children[0].style = defaultStatus;
+        elem.addEventListener('mouseover',() => {
+            elem.children[0].style = defaultStatus;
+        })
+        elem.addEventListener('mouseleave',() => {
+            elem.children[0].style = defaultStatus;
+        })
     }
     
-}
+
 const interactiveCategories = () => {
     var categories = document.getElementsByClassName("portfolio__categories")[0];
     categories.addEventListener('mousedown', (e)=>{
@@ -107,7 +127,7 @@ const setActive = (arr,active,activeClass) => {
 }
 var form = () => {//Взаимодействие с формой
     var form = document.getElementsByTagName('form')[0];
-    form.getElementsByTagName('button')[0].addEventListener("mouseup", (e)=>{//Нажатие на кнопку формы
+    form.getElementsByTagName('button')[0].addEventListener("", (e)=>{//Нажатие на кнопку формы
     var name = form.name.value;
     var email = form.email.value;
     var subject = form.subject.value;
@@ -132,7 +152,7 @@ var showMsg = (name,email,subject,desctibe) => {//Всплывающее окн�
     msg.classList.remove('hide');
     document.getElementsByClassName('page')[0].style = "filter: blur(5px);";
     msg.addEventListener("mouseover",(e)=>{msg.classList.add('ghostMsg')})
-    ok.addEventListener('mouseup',(e)=>{hideMsg()})//Возврат к исходному набору стилей при нажатии "Ок"
+    ok.addEventListener('',(e)=>{hideMsg()})//Возврат к исходному набору стилей при нажатии "Ок"
     msg.addEventListener("mousedown",(e)=>{if(e.target==msg)hideMsg()})//-->Нажатии на область вокруг окошка
     
     const hideMsg = () => {
