@@ -1,6 +1,7 @@
 window.onload = function() {//Действия после загрузки страницы
     moveNav();//Движение страницы при нажатии на нав элемент
     navPosition();//Позиция нава
+    slider();
     interactiveCategories();
     interactivePictures();
     form();
@@ -18,7 +19,6 @@ window.onmouseover = function(){
 const navPosition = ()=>{
     var nav = document.getElementsByClassName("header__list")[0];
     var p = document.getElementsByClassName('page')[0];
-    console.log(window)
     nav.parentElement.style = "right:"+(window.innerWidth-p.getBoundingClientRect().right+23)+"px";
 }
     //==============================================================
@@ -30,7 +30,7 @@ const navPosition = ()=>{
 const activeNavByScroll = () => {//Активируем Нав посредством скролла
     var navs = document.getElementsByClassName("header__list")[0].children;
     for (let i = 0; i < navs.length; i++) {
-        if(navs[i].children[0].innerText.toLowerCase()==whatBlockWeSee().classList[0]){
+        if(navs[i].children[0].innerText.toLowerCase() == whatBlockWeSee().classList[0]){
             //Сопоставляем содержимый навом текст, с классом блока который видим сейчас.
             setActive(navs,navs[i],"activeNav");//Делаем активным соответствующий.
         }
@@ -51,7 +51,7 @@ const interactiveHeader = () => {
     logo.addEventListener('mousedown',() => {
         movePage("home");//При нажатии на логотип возвращаеся на верх
     })
-    if(document.documentElement.scrollTop<=80){//Если страница на самом верху
+    if(document.documentElement.scrollTop<=40){//Если страница на самом верху
         //Возвращаем дефолт стилии всех элементов
         logo.children[0].children[0].style = defaultStatus;
         navToDefault(logo);
@@ -59,7 +59,7 @@ const interactiveHeader = () => {
             navToDefault(navs[i]);
         }
     }
-    if(document.documentElement.scrollTop>80){//Если страница скролиться
+    if(document.documentElement.scrollTop>40){//Если страница скролиться
         //Изменяем стили(Делаем их не заметными, для того чтобы не мешать контенту)
         logo.children[0].children[0].style = "display:none";
         navOnScroll(logo);
@@ -97,7 +97,12 @@ const whatBlockWeSee = () => {
     }
     return document.getElementsByClassName('home')[0];//Если находимся выше первой секции-то возвращаем home блок
 }
-
+//==================================SLIDER=============================
+const slider = () => {
+    var slids = document.getElementsByClassName("slider__content");
+    console.log(slids);
+    // hideAll(slids);
+}
 
 //================================PORTFOLIO===========================
 const interactiveCategories = () => {
@@ -155,19 +160,19 @@ var form = () => {//Взаимодействие с формой
     
 }
 var showMsg = (name,email,subject,desctibe) => {//Всплывающее окно
-    console.log('here');
     var msg = document.getElementsByClassName("msg")[0];
     var ok = msg.getElementsByClassName('button')[0];
     var p=msg.children[0].children;
+    var mail =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     p[0].innerText = "Письмо отправлено";//-->
     p[1].innerText ="Без темы";//-->
     p[2].innerText ="Без описания";//Перезапись значений всплывающего окна
-    if(name&&/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){//Если и имя и почта введены правильно-сообщиить об отправке
+    if(name&&mail.test(email)){//Если и имя и почта введены правильно-сообщиить об отправке
         write(p[1],subject,"Тема:  ")
         write(p[2],desctibe,"Описание:  ")
     }else{write(p[1]," "),write(p[2]," "),write(p[0]," ")}//Очистка <p> блоков
     if(!name){write(p[0],"Введите имя")}//Если не введено имя
-    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)==false){write(p[1],"Введите корректный Email")}//Если не правильно введена почта
+    if(mail.test(email)==false){write(p[1],"Введите корректный Email")}//Если не правильно введена почта
     msg.classList.remove('hide');
     document.getElementsByClassName('page')[0].style = "filter: blur(5px);";
     msg.addEventListener("mouseover",(e)=>{msg.classList.add('ghostMsg')})
