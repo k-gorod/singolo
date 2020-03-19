@@ -37,6 +37,8 @@ img {
   margin: auto 0;
 }
 .header__singolo h1 {
+  -webkit-user-select: none;
+          user-select: none;
   margin-bottom: 0;
   font-size: 24.3px;
   color: #ffffff;
@@ -45,9 +47,6 @@ img {
   font-weight: 700;
   text-align: left;
   cursor: default;
-}
-.header__singolo h1::selection {
-  background: transparent;
 }
 .header__singolo h1:hover {
   cursor: pointer;
@@ -58,6 +57,7 @@ img {
   float: right;
   margin: auto 0;
   z-index: 4;
+  transition: none !important;
 }
 .header__navigation ul {
   display: flex;
@@ -85,7 +85,9 @@ img {
 }
 .header__navigation ul .activeNav div {
   color: red !important;
-  text-shadow: 0 0 10px chocolate;
+  text-shadow: 0 0 10px red;
+  background: #3237465e;
+  border-radius: 50%;
 }
 .header__navigation ul li {
   position: relative;
@@ -441,7 +443,7 @@ img {
   background: #ffffff;
 }
 
-.quote {
+.contact {
   display: grid;
   grid-template-columns: auto auto;
   align-items: flex-start;
@@ -449,11 +451,11 @@ img {
   background: #f06c64;
   padding: 68px 40px 0 40px;
 }
-.quote__head {
+.contact__head {
   margin: 0 0 10px 0px;
   grid-column: 1/3;
 }
-.quote__head h1 {
+.contact__head h1 {
   font-size: 30px;
   line-height: 18px;
   color: #f0d8d9;
@@ -462,7 +464,7 @@ img {
   text-align: left;
   margin: 0 0 27px 0;
 }
-.quote__head p {
+.contact__head p {
   font-size: 18px;
   line-height: 30px;
   color: #f0d8d9;
@@ -471,13 +473,13 @@ img {
   font-weight: 300;
   text-align: left;
 }
-.quote form {
+.contact form {
   display: flex;
   flex-direction: column;
   width: 619px;
   margin: 16px 0 10px 0px;
 }
-.quote form * {
+.contact form * {
   font-size: 12px;
   color: #f0d8d9;
   font-family: "Lato";
@@ -485,10 +487,10 @@ img {
   font-weight: 400;
   padding: 0 0 0 14px;
 }
-.quote form *::placeholder {
+.contact form *::placeholder {
   color: #f48c8f;
 }
-.quote form :nth-child(n) {
+.contact form :nth-child(n) {
   border: none;
   height: 38px;
   border-radius: 5px;
@@ -496,28 +498,28 @@ img {
   margin: 0 0 16px 0;
   overflow: hidden;
 }
-.quote form :nth-child(4) {
+.contact form :nth-child(4) {
   height: 192px;
   resize: none;
   padding-top: 10px;
 }
-.quote form :nth-child(5) {
+.contact form :nth-child(5) {
   width: 100px;
   padding: 0;
   outline: none;
 }
-.quote form :nth-child(5):hover {
+.contact form :nth-child(5):hover {
   background: #f0a39e;
 }
-.quote form :nth-child(5):active {
+.contact form :nth-child(5):active {
   border: solid 0.5px #923d38;
   box-shadow: 0 0 6px #923d38;
 }
-.quote .info {
+.contact .info {
   min-width: 300px;
   margin: 0 0 0 20px;
 }
-.quote .info h1 {
+.contact .info h1 {
   font-size: 18px;
   line-height: 18px;
   color: #f0d8d9;
@@ -526,7 +528,7 @@ img {
   text-align: left;
   margin: 15px 0 0 0;
 }
-.quote .info p {
+.contact .info p {
   font-size: 11.5px;
   line-height: 22px;
   color: #f0d8d9;
@@ -536,10 +538,10 @@ img {
   text-align: justify;
   margin: 11px 0 0 0;
 }
-.quote .info__contacts {
+.contact .info__contacts {
   margin: 23px 0 0 0;
 }
-.quote .info__contacts * a {
+.contact .info__contacts * a {
   border: none;
   text-decoration: none;
   font-size: 11px;
@@ -553,14 +555,14 @@ img {
   margin: 0 0 0 10px;
   letter-spacing: 0.5px;
 }
-.quote .info__contacts div {
+.contact .info__contacts div {
   display: grid;
   grid-template-columns: 13px auto;
 }
-.quote .info__contacts div :nth-child(1) {
+.contact .info__contacts div :nth-child(1) {
   justify-self: center;
 }
-.quote__bottom {
+.contact__bottom {
   width: 100%;
   height: 6px;
   background: #ea676b;
