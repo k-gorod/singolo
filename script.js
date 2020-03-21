@@ -2,8 +2,10 @@ window.onload = function() {//Действия после загрузки ст�
     header();
     slider();
     portfolio();
-    form();
+    formBlock();
+    
 }
+
 window.onscroll = function() {//Реакция на скролл
     navPosition();//Позиция нава
     interactiveHeader();//Состояние элементов хедера находясь на верху, и нет
@@ -263,7 +265,7 @@ const setVisibleItems = (arr,cat) => {
 
 //============================================================FORM==========================================================
 
-var form = () => {//Взаимодействие с формой
+var formBlock = () => {//Взаимодействие с формой
     var form = document.getElementsByTagName('form')[0];
     form.getElementsByTagName('button')[0].addEventListener("mousedown", (e)=>{//Нажатие на кнопку формы
     var name = form.name.value;
@@ -288,6 +290,7 @@ var showMsg = (name,email,subject,desctibe) => {//Всплывающее окн�
     }else{write(p[1]," "),write(p[2]," "),write(p[0]," ")}//Очистка <p> блоков
     if(!name){write(p[0],"Введите имя")}//Если не введено имя
     if(mail.test(email)==false){write(p[1],"Введите корректный Email")}//Если не правильно введена почта
+    //document.body.style = "overflow: hidden";
     msg.classList.remove('hide');
     document.getElementsByClassName('page')[0].style = "filter: blur(5px);";
     msg.addEventListener("mouseover",(e)=>{msg.classList.add('ghostMsg')})
@@ -296,7 +299,17 @@ var showMsg = (name,email,subject,desctibe) => {//Всплывающее окн�
     const hideMsg = () => {
         msg.classList.add('hide');
         msg.classList.remove('ghostMsg');
-        document.getElementsByClassName('page')[0].style = "filter: none;";;
+        document.getElementsByClassName('page')[0].style = "filter: none;";
+        var form = document.getElementsByTagName('form')[0];
+        
+        console.log(window.statusbar.visible)
+        //document.body.style = "overflow: visible";
+        
+        form.name.value="";
+        form.email.value="";
+        form.subject.value="";
+        form.describe.value="";
+      
     }
 }
 
@@ -304,7 +317,7 @@ const write = (node,text,pre) => {
     if(!pre)pre="";
     if(text){node.innerText = pre+text}//Если в агруметне есть текст-то перезаписывает его в заданном узле
 }
-//=======================================================================================
+//===========================================================OTHER===============================================
 const hideAll = (arr) =>{
     for (let i = 0; i < arr.length; i++) {
         if(!arr[i].classList.contains("hide")){arr[i].classList.add("hide")}//Обнуляет список видимых элементов
