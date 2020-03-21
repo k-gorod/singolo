@@ -1,11 +1,8 @@
 window.onload = function() {//Действия после загрузки страницы
-    moveNav();//Движение страницы при нажатии на нав элемент
-    navPosition();//Позиция нава
+    header();
     slider();
-    interactiveCategories();
-    interactivePictures();
+    portfolio();
     form();
-
 }
 window.onscroll = function() {//Реакция на скролл
     navPosition();//Позиция нава
@@ -15,7 +12,11 @@ window.onscroll = function() {//Реакция на скролл
 window.onmouseover = function(){
     navPosition();//Позиция нава
 }
-//=======================HEADER=============================
+//==============================================HEADER====================================================
+const header = () => {
+    moveNav();//Движение страницы при нажатии на нав элемент
+    navPosition();//Позиция нава
+}
 const navPosition = ()=>{
     var nav = document.getElementsByClassName("header__list")[0];
     var p = document.getElementsByClassName('page')[0];
@@ -97,12 +98,17 @@ const whatBlockWeSee = () => {
     }
     return document.getElementsByClassName('home')[0];//Если находимся выше первой секции-то возвращаем home блок
 }
-//==================================SLIDER=============================
+//========================================================SLIDER==========================================================
 const slider = () => {
+    turnOnOffPhone();//Включаем-выключаем телефоны
+    sliderMotion();//Реализуем движения слайдера
+}
+const sliderMotion = () =>{
     var content = document.getElementsByClassName('slider__content')[0].children;//Получаем в массив слайды из "хранилища"
     var slides = document.getElementsByClassName('slideWindow')[0].children;//Получаем видимый(средний) и невидимые(левый и правый) части слайдера
     var stopEvent = false;//Разрешаем слушать ивент(фиксировать нажатие на стрелки)
     var active = 0;//Задаем индекс подгружаемого слайда, который будет активным(видимым)
+
     const changeActive = (boolean) => {//Изменяем идекс подгружаемого слайда. Если выходит за допустимые значение-обновляем.
         if(boolean){
             active++;
@@ -180,7 +186,40 @@ const slider = () => {
     z(3);//Двигаем их на передний план
 }
 
-//================================PORTFOLIO===========================
+const turnOnOffPhone=()=>{//Телефона реализованы 2мя способами. Вкл/выкл тоже релизовано 2мя способами.
+    document.getElementsByClassName('slider')[0].addEventListener('mousedown',(e)=>{
+        if(e.target.name=="iPhoneVBlue"){
+            e.target.classList.contains("hideByO")?
+            e.target.classList.remove("hideByO"):
+            e.target.classList.add("hideByO");
+        }
+        if(e.target.name=="iPhoneV"){
+            var apnd = document.createElement("div");
+            var black = document.createElement("div");
+                apnd.classList.add('VturnOf');
+                black.classList.add('black');
+                apnd.append(black);
+                e.target.parentElement.append(apnd);
+        }
+        if(e.target.name=="iPhoneH"){
+            var apnd = document.createElement("div");
+            var black = document.createElement("div");
+                apnd.classList.add('HturnOf');
+                black.classList.add('black');
+                apnd.append(black);
+                e.target.parentElement.append(apnd);
+        }
+        if(e.target.classList.contains('black')){
+            e.target.parentElement.remove();
+        }
+        
+    })
+}
+//===========================================================PORTFOLIO======================================================
+const portfolio = () => {
+    interactiveCategories();
+    interactivePictures();
+}
 const interactiveCategories = () => {
     var categories = document.getElementsByClassName("portfolio__categories")[0];
     categories.addEventListener('mousedown', (e)=>{
@@ -222,7 +261,7 @@ const setVisibleItems = (arr,cat) => {
     }
 }
 
-
+//============================================================FORM==========================================================
 
 var form = () => {//Взаимодействие с формой
     var form = document.getElementsByTagName('form')[0];
