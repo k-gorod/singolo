@@ -99,9 +99,85 @@ const whatBlockWeSee = () => {
 }
 //==================================SLIDER=============================
 const slider = () => {
-    var slids = document.getElementsByClassName("slider__content");
-    console.log(slids);
-    // hideAll(slids);
+    var content = document.getElementsByClassName('slider__content')[0].children;//Получаем в массив слайды из "хранилища"
+    var slides = document.getElementsByClassName('slideWindow')[0].children;//Получаем видимый(средний) и невидимые(левый и правый) части слайдера
+    var stopEvent = false;//Разрешаем слушать ивент(фиксировать нажатие на стрелки)
+    var active = 0;//Задаем индекс подгружаемого слайда, который будет активным(видимым)
+    const changeActive = (boolean) => {//Изменяем идекс подгружаемого слайда. Если выходит за допустимые значение-обновляем.
+        if(boolean){
+            active++;
+            if(active==content.length)active=0;
+        }else{
+            active--;
+            if(active<0)active=content.length-1;
+        }
+    }
+    const catchItem = (n) => {//Зацикливаем поиск по "Хранилищу" слайдов.
+        var len = content.length;
+        return (n==0?
+                active:active+n==len?
+                0:active+n<0?
+                len-1:active+n)
+    }
+    const contentToSlides = () => {//Подгружаем нужные слайды на места
+        slides[0].prepend(content[catchItem(-1)].cloneNode(true));
+        slides[1].prepend(content[catchItem(0)].cloneNode(true));
+        slides[2].prepend(content[catchItem(1)].cloneNode(true));
+        
+    }
+    
+    const z = (z) => {//Изменение z-index заргуженных слайдов
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].children[0].classList.add('z-'+z);
+            if(z==2){slides[i].children[0].classList.remove('z-1')}
+        }
+    }
+    const rmExcess = () => {//Удаление лишних слайдов
+        for (let i = 0; i < slides.length; i++) {
+            if(slides[i].children[1])slides[i].children[1].remove();
+            
+        }
+    }
+    const eventPermission=()=>{// Разрешение
+        rmExcess();//Удаляем сладный переднего плана
+        z(3);//Двигаем видимые слайды вперед(ближе к смотрящему)
+        stopEvent = false;// Разрешаем слушать(фиксировать) ивент
+    }
+
+    //====================================RIGHT
+    document.getElementsByClassName('slider__rightArr')[0].addEventListener('mousedown',()=>{
+        //Если нажали на правую стрелку
+        rightArrowEvent(stopEvent)
+        stopEvent=true;//Запрещаем слушать ивент
+    })
+    const rightArrowEvent = (boolean) => {
+        if(!boolean){
+                slides[0].children[0].remove();//Удаляем левый слайд
+                slides[1].children[0].classList.add('left');//Сдвигаем средний слайд влево
+                slides[2].children[0].classList.add('left');//Сдвигаем правый слайд влево
+                changeActive(true);//Сдвигаем индекс подгружаемого слайда влево
+                contentToSlides();//Загружаем слайды из "хранилища" в слайдер(на задний план)
+                setTimeout(eventPermission,200);//После 0.2с разрешаем слушать ивент, двигаем нужные слайды на передный план
+            }
+    }
+    //====================================LEFT
+    document.getElementsByClassName('slider__leftArr')[0].addEventListener('mousedown',()=>{//^^Аналогично^^
+        
+        leftArrowEvent(stopEvent)
+        stopEvent=true;
+    })
+    const leftArrowEvent = (boolean) => {
+        if(!boolean){
+                slides[0].children[0].classList.add('right');
+                slides[1].children[0].classList.add('right');
+                slides[2].children[0].remove();
+                changeActive(false);
+                contentToSlides();
+                setTimeout(eventPermission,200);
+            }
+    }
+    contentToSlides();//Первая подгрузка слайдов
+    z(3);//Двигаем их на передний план
 }
 
 //================================PORTFOLIO===========================

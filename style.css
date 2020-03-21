@@ -123,16 +123,34 @@ img {
 
 .slider {
   position: relative;
-  background: #f06c64;
   width: 100%;
   height: 600px;
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
 }
-.slider :hover {
-  transform: translateX(100%);
+.slider .slideWindow {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+}
+.slider .slideWindow .leftSlide, .slider .slideWindow .midSlide, .slider .slideWindow .rightSlide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.slider .slideWindow .leftSlide {
+  left: -100%;
+}
+.slider .slideWindow .midSlide {
+  left: 0%;
+}
+.slider .slideWindow .rightSlide {
+  left: 100%;
 }
 .slider__leftArr {
-  z-index: 2;
+  z-index: 7;
   position: absolute;
   top: 46.7%;
   left: 42px;
@@ -140,7 +158,7 @@ img {
   height: 27px;
 }
 .slider__rightArr {
-  z-index: 2;
+  z-index: 7;
   position: absolute;
   bottom: 48.6%;
   right: 40px;
@@ -149,13 +167,14 @@ img {
   align-self: end;
 }
 .slider__content {
-  z-index: 1;
-  position: relative;
-  width: 100%;
-  height: 100%;
+  display: none;
 }
 .slider__content-1 {
-  display: none;
+  position: absolute;
+  background: #f06c64;
+  width: 100%;
+  height: 100%;
+  left: 0;
 }
 .slider__content-1 .slider__phoneV {
   position: absolute;
@@ -168,7 +187,11 @@ img {
   right: 103px;
 }
 .slider__content-2 {
+  position: absolute;
   background: #648BF0;
+  width: 100%;
+  height: 100%;
+  left: 0;
 }
 .slider__content-2 .slider__phoneV {
   position: relative;
@@ -177,7 +200,6 @@ img {
 }
 .slider__content-2 .slider__phoneV * {
   position: absolute;
-  z-index: 1;
 }
 .slider__content-2 .slider__phoneV :nth-child(3) {
   top: 69px;
@@ -196,13 +218,12 @@ img {
   opacity: 0.5;
 }
 .slider__bottom {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   bottom: 0;
-  background: #ea676b;
+  background: rgba(240, 50, 220, 0.08);
   height: 6px;
   width: 100%;
-  grid-column: 1/4;
 }
 
 .services {
@@ -284,6 +305,10 @@ img {
   word-break: break-all;
   margin: 9px 0 20px 0;
   height: 65px;
+}
+
+.hoverSclBlue:hover {
+  transform: scale(1.05) translate(20px, -10px);
 }
 
 .hoverScl:hover {
@@ -668,11 +693,27 @@ img {
 }
 
 .a *, .a {
-  transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all !important;
+}
+
+.left {
+  left: -100% !important;
+}
+
+.right {
+  left: 100% !important;
+}
+
+.z-2 {
+  z-index: 2 !important;
+}
+
+.z-3 {
+  z-index: 3 !important;
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .activePic {
