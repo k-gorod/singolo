@@ -7,23 +7,23 @@ window.onload = function() {//Действия после загрузки ст�
 }
 
 window.onscroll = function() {//Реакция на скролл
-    navPosition();//Позиция нава
+    
     interactiveHeader();//Состояние элементов хедера находясь на верху, и нет
     activeNavByScroll();//Активируем нав, соответствующий болку, который видим
 }
 window.onmouseover = function(){
-    navPosition();//Позиция нава
+    
 }
 //==============================================HEADER====================================================
 const header = () => {
     moveNav();//Движение страницы при нажатии на нав элемент
-    navPosition();//Позиция нава
+    
 }
-const navPosition = ()=>{
-    var nav = document.getElementsByClassName("header__list")[0];
-    var p = document.getElementsByClassName('page')[0];
-    nav.parentElement.style = "right:"+(window.innerWidth-p.getBoundingClientRect().right+23)+"px";
-}
+// const navPosition = ()=>{
+//     var nav = document.getElementsByClassName("header__list")[0];
+//     var p = document.getElementsByClassName('page')[0];
+//     nav.parentElement.style = "right:"+(window.innerWidth-p.getBoundingClientRect().right+23)+"px";
+// }
     //==============================================================
     // nav.addEventListener('mousedown',(e)=>{//активация нав по клику
     //     var active=e.target;
@@ -302,7 +302,7 @@ var showMsg = (name,email,subject,desctibe) => {//Всплывающее окн�
         document.getElementsByClassName('page')[0].style = "filter: none;";
         var form = document.getElementsByTagName('form')[0];
         
-        console.log(window.statusbar.visible)
+        
         //document.body.style = "overflow: visible";
         
         form.name.value="";

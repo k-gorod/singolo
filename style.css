@@ -52,15 +52,15 @@ img {
   cursor: pointer;
 }
 .header__navigation {
-  position: fixed;
-  top: 30px;
   float: right;
   margin: auto 0;
-  z-index: 4;
-  transition: none !important;
 }
 .header__navigation ul {
   display: flex;
+  position: fixed;
+  transform: translateX(-100%);
+  top: 25px;
+  z-index: 5;
   list-style: none;
   margin-bottom: 6.5px;
   overflow: visible;
@@ -689,7 +689,7 @@ img {
   font-weight: 400;
   text-align: left;
   margin: 26px 0 0 40px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .a *, .a {
