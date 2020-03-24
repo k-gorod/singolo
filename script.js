@@ -4,6 +4,7 @@ window.onload = function() {//Действия после загрузки ст�
     portfolio();
     formBlock();
     
+    response();
 }
 
 window.onscroll = function() {//Реакция на скролл
@@ -11,8 +12,18 @@ window.onscroll = function() {//Реакция на скролл
     interactiveHeader();//Состояние элементов хедера находясь на верху, и нет
     activeNavByScroll();//Активируем нав, соответствующий болку, который видим
 }
-window.onmouseover = function(){
+window.addEventListener('resize',() => {
+    response();
     
+})
+function response(){
+    var width = document.getElementsByClassName('page')[0].getBoundingClientRect().width;
+    //var blocks = document.getElementsByTagName('SECTION')
+    
+    sliderHeight(width,58.82);
+}
+function sliderHeight(width,k){
+    document.getElementsByClassName('slider')[0].style.height = width/100*k+'px';
 }
 //==============================================HEADER====================================================
 const header = () => {
@@ -105,6 +116,7 @@ const slider = () => {
     turnOnOffPhone();//Включаем-выключаем телефоны
     sliderMotion();//Реализуем движения слайдера
 }
+
 const sliderMotion = () =>{
     var content = document.getElementsByClassName('slider__content')[0].children;//Получаем в массив слайды из "хранилища"
     var slides = document.getElementsByClassName('slideWindow')[0].children;//Получаем видимый(средний) и невидимые(левый и правый) части слайдера
