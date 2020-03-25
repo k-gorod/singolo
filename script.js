@@ -19,11 +19,13 @@ window.addEventListener('resize',() => {
 function response(){
     var width = document.getElementsByClassName('page')[0].getBoundingClientRect().width;
     //var blocks = document.getElementsByTagName('SECTION')
-    if(width<=400){}
-    else if(width<=500){blockHeight('portfolio',width,225.06);}
+    if(width<=500){blockHeight('portfolio',width,225.06);}
     else if(width<=600){blockHeight('portfolio',width,200);}
     else if(width<=768){blockHeight('portfolio',width,142.5);}
-    else if(width<=1020){blockHeight('portfolio',width,74.7);}
+    else if(width<=1020){
+        
+        blockHeight('portfolio',width,79,-20);
+    }
     
     
     blockHeight('slider',width,58.82);

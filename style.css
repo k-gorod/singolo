@@ -261,7 +261,7 @@ img {
   font-family: "Lato";
   overflow: hidden;
   font-weight: 300;
-  text-align: left;
+  text-align: justify;
   letter-spacing: 0px;
   margin: 25.5px 0 0 0;
   color: #767e9e;
@@ -332,6 +332,7 @@ img {
 }
 
 .portfolio {
+  height: 670px;
   position: relative;
   background: #2d303a;
   margin: 0;
@@ -394,7 +395,7 @@ img {
   background: transparent;
 }
 .portfolio__grid {
-  height: 68.96%;
+  height: 73%;
   margin: 19px 0 0 0px;
   display: grid;
   grid-template-columns: repeat(4, 22.45%);
@@ -427,9 +428,10 @@ img {
 
 .about {
   background: #f2f2f2;
+  position: relative;
   display: grid;
   grid-template-rows: auto 6px;
-  height: 734px;
+  padding: 0 0 60px 0;
 }
 .about__content {
   margin: 0 40px;
@@ -456,16 +458,17 @@ img {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
   width: 100%;
   margin: 45px 0 0 0;
   padding: 0;
 }
 .about__list li {
-  width: 300px;
+  width: 100%;
   overflow: hidden;
 }
 .about__list li img {
-  height: 300px;
+  width: 100%;
 }
 .about__list li h1 {
   font-size: 18px;
@@ -531,21 +534,24 @@ img {
   cursor: pointer;
 }
 .about__bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 6px;
-  background: #ffffff;
+  background: #fff;
 }
 
 .contact {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 66% 33%;
   align-items: flex-start;
-  height: 579px;
   background: #f06c64;
   padding: 68px 40px 0 40px;
 }
 .contact__head {
   margin: 0 0 10px 0px;
+  grid-row: 1/2;
   grid-column: 1/3;
 }
 .contact__head h1 {
@@ -569,7 +575,7 @@ img {
 .contact form {
   display: flex;
   flex-direction: column;
-  width: 619px;
+  width: 100%;
   margin: 16px 0 10px 0px;
 }
 .contact form * {
@@ -608,11 +614,10 @@ img {
   border: solid 0.5px #923d38;
   box-shadow: 0 0 6px #923d38;
 }
-.contact .info {
-  min-width: 300px;
-  margin: 0 0 0 20px;
+.contact__info {
+  margin: 0 0 42px 20px;
 }
-.contact .info h1 {
+.contact__info h1 {
   font-size: 18px;
   line-height: 18px;
   color: #f0d8d9;
@@ -621,7 +626,7 @@ img {
   text-align: left;
   margin: 15px 0 0 0;
 }
-.contact .info p {
+.contact__info p {
   font-size: 11.5px;
   line-height: 22px;
   color: #f0d8d9;
@@ -631,10 +636,10 @@ img {
   text-align: justify;
   margin: 11px 0 0 0;
 }
-.contact .info__contacts {
+.contact__links {
   margin: 23px 0 0 0;
 }
-.contact .info__contacts * a {
+.contact__links * a {
   border: none;
   text-decoration: none;
   font-size: 11px;
@@ -648,11 +653,11 @@ img {
   margin: 0 0 0 10px;
   letter-spacing: 0.5px;
 }
-.contact .info__contacts div {
+.contact__links div {
   display: grid;
   grid-template-columns: 13px auto;
 }
-.contact .info__contacts div :nth-child(1) {
+.contact__links div :nth-child(1) {
   justify-self: center;
 }
 .contact__bottom {
@@ -718,7 +723,7 @@ img {
 .msg {
   opacity: 0;
   width: 100%;
-  height: 100%;
+  height: 120%;
   background: rgba(0, 0, 0, 0.6);
   z-index: 9;
   position: fixed;
@@ -804,7 +809,7 @@ img {
   opacity: 1;
 }
 .ghostMsg div {
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -80%);
 }
 
 .hideByO {
@@ -864,6 +869,15 @@ img {
     grid-template-columns: repeat(3, 30%);
     grid-template-rows: repeat(4, auto);
   }
+
+  .about__list {
+    grid-gap: 15px;
+    margin: 28px 0 0 0;
+  }
+
+  .contact form :nth-child(4) {
+    height: 159px;
+  }
 }
 @media (max-width: 600px) {
   .services__list {
@@ -885,6 +899,26 @@ img {
     margin: 19px 0 0 0px;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(4, 1fr);
+  }
+
+  .about__list {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    padding: 44px 30px 0 30px;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+  }
+  .contact__info {
+    margin-left: 0;
+  }
+  .contact form {
+    padding-bottom: 0;
+  }
+  .contact__head {
+    grid-row: 1/2;
+    grid-column: 1/2;
   }
 }
 @media (max-width: 400px) {
