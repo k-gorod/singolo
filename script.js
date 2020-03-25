@@ -19,11 +19,19 @@ window.addEventListener('resize',() => {
 function response(){
     var width = document.getElementsByClassName('page')[0].getBoundingClientRect().width;
     //var blocks = document.getElementsByTagName('SECTION')
+    if(width<=400){}
+    else if(width<=500){blockHeight('portfolio',width,225.06);}
+    else if(width<=600){blockHeight('portfolio',width,200);}
+    else if(width<=768){blockHeight('portfolio',width,142.5);}
+    else if(width<=1020){blockHeight('portfolio',width,74.7);}
     
-    sliderHeight(width,58.82);
+    
+    blockHeight('slider',width,58.82);
+    
 }
-function sliderHeight(width,k){
-    document.getElementsByClassName('slider')[0].style.height = width/100*k+'px';
+function blockHeight(cls,width,k,pdd){
+    if(pdd==undefined){pdd=0}
+    document.getElementsByClassName(cls)[0].style.height = (width/100*k-pdd)+'px';
 }
 //==============================================HEADER====================================================
 const header = () => {
