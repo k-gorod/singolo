@@ -200,6 +200,7 @@ img {
   width: 48.5%;
 }
 .slider__content-2 {
+  display: flex;
   position: absolute;
   background: #648BF0;
   width: 100%;
@@ -208,25 +209,38 @@ img {
 }
 .slider__content-2 .slider__phoneV {
   position: relative;
-  top: 43px;
-  left: 400px;
+  width: 25%;
+  height: 85.5%;
+  top: 7.16%;
+  left: 39.21%;
 }
 .slider__content-2 .slider__phoneV * {
   position: absolute;
 }
+.slider__content-2 .slider__phoneV :nth-child(1) {
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.slider__content-2 .slider__phoneV :nth-child(2) {
+  width: 90.19%;
+  top: 0;
+  left: 0;
+}
 .slider__content-2 .slider__phoneV :nth-child(3) {
-  top: 69px;
-  left: 14.1px;
+  width: 78.82%;
+  top: 13.42%;
+  left: 5.52%;
 }
 .slider__content-2 .slider__phoneV-2 {
-  top: 152px;
-  left: 68px;
+  top: 9.1%;
+  left: -3.4%;
   transform: scale(0.6);
   opacity: 0.5;
 }
 .slider__content-2 .slider__phoneV-3 {
-  top: 152px;
-  left: 425px;
+  top: 9.1%;
+  left: 6.5%;
   transform: scale(0.6);
   opacity: 0.5;
 }
@@ -317,10 +331,6 @@ img {
   word-break: break-all;
   margin: 9px 0 20px 0;
   height: 65px;
-}
-
-.hoverSclBlue:hover {
-  transform: scale(1.05) translate(20px, -10px);
 }
 
 .hoverScl:hover {
@@ -779,9 +789,9 @@ img {
   position: absolute;
   background: #000;
   width: 76.7%;
-  height: 67.6%;
-  top: 68px;
-  left: 16px;
+  height: 67.5%;
+  top: 13.56%;
+  left: 6.5%;
   border-radius: 3px;
 }
 
@@ -796,8 +806,8 @@ img {
   background: #000;
   width: 67.4%;
   height: 74%;
-  top: 19px;
-  left: 62.5px;
+  top: 7.25%;
+  left: 12.63%;
   border-radius: 3px;
 }
 
@@ -915,6 +925,9 @@ img {
   }
   .contact form {
     padding-bottom: 0;
+  }
+  .contact form :nth-child(5) {
+    width: 100%;
   }
   .contact__head {
     grid-row: 1/2;
