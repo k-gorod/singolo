@@ -1,9 +1,12 @@
+
+
 window.onload = function() {//Действия после загрузки страницы
+    
+    
     header();
     slider();
     portfolio();
     formBlock();
-    
     response();
 }
 
@@ -14,11 +17,19 @@ window.onscroll = function() {//Реакция на скролл
 }
 window.addEventListener('resize',() => {
     response();
-    
+    interactiveHeader()
 })
+function typeOfNav(){
+    
+    var width = document.getElementsByClassName('page')[0].getBoundingClientRect().width;
+    return (width<600?
+            "burger":
+            "DT")
+}
 function response(){
     var width = document.getElementsByClassName('page')[0].getBoundingClientRect().width;
     //var blocks = document.getElementsByTagName('SECTION')
+    
     if(width<=500){blockHeight('portfolio',width,225.06);}
     else if(width<=600){blockHeight('portfolio',width,200);}
     else if(width<=768){blockHeight('portfolio',width,142.5);}
@@ -29,17 +40,14 @@ function response(){
     
     
     blockHeight('slider',width,58.82);
-    
+    burgerType()
+    interactiveHeader()
 }
 function blockHeight(cls,width,k,pdd){
     if(pdd==undefined){pdd=0}
     document.getElementsByClassName(cls)[0].style.height = (width/100*k-pdd)+'px';
 }
 //==============================================HEADER====================================================
-const header = () => {
-    moveNav();//Движение страницы при нажатии на нав элемент
-    
-}
 // const navPosition = ()=>{
 //     var nav = document.getElementsByClassName("header__list")[0];
 //     var p = document.getElementsByClassName('page')[0];
@@ -51,6 +59,69 @@ const header = () => {
     //     if(e.target.tagName=="DIV"){active=e.target.parentElement}//Обработка миссклика
     //     setActive(nav.children,active,"activeNav")
     // })
+    
+const header = () => {
+    burgerVisibility()
+    burgerType()
+    moveNav();//Движение страницы при нажатии на нав элемент
+    
+}
+//==========================burgerVisibility
+var logo=document.getElementsByClassName("header__singolo")[0];
+var burger = document.getElementsByClassName('burger__navigation');
+var burgerButton = document.getElementsByClassName('burger__button')[0];
+function burgerVisibility(){
+    burgerButton.addEventListener('mousedown',(e)=>{//При нажатии кнопки "бургер"
+        if(burgerButton.classList.contains('burger__button-active')==true){
+            closeBurger()
+        }
+        else if(burgerButton.classList.contains('burger__button-active')==false){
+            openBurger();
+        }
+    })
+}
+function openBurger(){
+    burgerButton.classList.add('burger__button-active');
+    burger[0].classList.add('burger__navigation-active');
+    if(logo.classList.contains('logoMobile')){logo.classList.remove("logoMobile");}
+}
+function closeBurger(){
+    burgerButton.classList.remove('burger__button-active');
+    burger[0].classList.remove('burger__navigation-active');
+    if(!logo.classList.contains('logoMobile')){logo.classList.add("logoMobile");}
+}
+//burgerVisibility==========================
+//==========================burgerType
+function burgerType(){
+    var logo=document.getElementsByClassName("header__singolo")[0];
+    var header = document.getElementsByClassName('header__navigation')
+    var burger = document.getElementsByClassName('burger__navigation')
+    var burgerButton = document.getElementsByClassName('burger__button')[0];
+    
+    if(typeOfNav()=="DT"){
+        burgerButton.classList.add('hide'); 
+        if(header.length==0){
+        
+        
+        
+        burger[0].classList.add('header__navigation')
+        header[0].classList.remove('burger__navigation')
+        if(logo.classList.contains('logoMobile')){logo.classList.remove("logoMobile");}
+        }
+    }
+    if(typeOfNav()=="burger"){
+        burgerButton.classList.remove('hide');
+        if(burger.length==0){
+           
+            
+            header[0].classList.add('burger__navigation')
+            burger[0].classList.remove('header__navigation')
+            if(!logo.classList.contains('logoMobile')){logo.classList.add("logoMobile");}
+        }
+        
+    }
+}
+
 const activeNavByScroll = () => {//Активируем Нав посредством скролла
     var navs = document.getElementsByClassName("header__list")[0].children;
     for (let i = 0; i < navs.length; i++) {
@@ -61,10 +132,17 @@ const activeNavByScroll = () => {//Активируем Нав посредст�
     }
 }
 const moveNav = () => {
-    document.getElementsByClassName("header__navigation")[0].addEventListener('mousedown',(e) => {
+    var cls;
+    if(typeOfNav()=="DT"){cls="header__navigation";}
+    if(typeOfNav()=="burger"){cls="burger__navigation";}
+    
+    document.getElementsByClassName(cls)[0].addEventListener('mousedown',(e) => {
         if(e.target!=document.getElementsByTagName("NAV")[0]&&e.target!=document.getElementsByTagName("UL")[0]){
             //^Обработка мисскликов
-        movePage(e.target.innerText.toLowerCase());}})
+        movePage(e.target.innerText.toLowerCase())}
+        if(cls=="burger__navigation"&&e.target.classList[0]!="burger__navigation"){closeBurger()}
+        console.log()
+    })
 }
 
 
@@ -72,25 +150,28 @@ const moveNav = () => {
 const interactiveHeader = () => {
     var logo=document.getElementsByClassName("header__singolo")[0];
     var navs=document.getElementsByClassName("header__list")[0].children;
-    logo.addEventListener('mousedown',() => {
-        movePage("home");//При нажатии на логотип возвращаеся на верх
-    })
-    if(document.documentElement.scrollTop<=40){//Если страница на самом верху
-        //Возвращаем дефолт стилии всех элементов
-        logo.children[0].children[0].style = defaultStatus;
-        navToDefault(logo);
-        for (let i = 0; i < navs.length; i++) {
-            navToDefault(navs[i]);
+   
+    
+        logo.addEventListener('mousedown',() => {
+            movePage("home");//При нажатии на логотип возвращаеся на верх
+        })
+        if(document.documentElement.scrollTop<=40){//Если страница на самом верху
+            //Возвращаем дефолт стилии всех элементов
+            logo.children[0].children[0].style = defaultStatus;
+            navToDefault(logo);
+            for (let i = 0; i < navs.length; i++) {
+                navToDefault(navs[i]);
+            }
         }
-    }
-    if(document.documentElement.scrollTop>40){//Если страница скролиться
-        //Изменяем стили(Делаем их не заметными, для того чтобы не мешать контенту)
-        logo.children[0].children[0].style = "display:none";
-        navOnScroll(logo);
-        for (let i = 0; i < navs.length; i++) {
-            navOnScroll(navs[i]);
+        if(document.documentElement.scrollTop>40&&typeOfNav()!="burger"){//Если страница скролиться
+            //Изменяем стили(Делаем их не заметными, для того чтобы не мешать контенту)
+            logo.children[0].children[0].style = "display:none";
+            navOnScroll(logo);
+            for (let i = 0; i < navs.length; i++) {
+                navOnScroll(navs[i]);
+            }
         }
-    }
+    
 }
 const navToDefault = (elem) => { // Возврат к дэфолтным стилям
     elem.children[0].style = defaultStatus;
