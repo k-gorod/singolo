@@ -61,37 +61,59 @@ function blockHeight(cls,width,k,pdd){
     // })
     
 const header = () => {
-    burgerVisibility()
     burgerType()
+    burgerVisibility()
     moveNav();//Движение страницы при нажатии на нав элемент
     
 }
-//==========================burgerVisibility
+//==========================Visibility
 var logo=document.getElementsByClassName("header__singolo")[0];
 var burger = document.getElementsByClassName('burger__navigation');
 var burgerButton = document.getElementsByClassName('burger__button')[0];
+var burgerBg = document.getElementsByClassName("msg")[0];
 function burgerVisibility(){
     burgerButton.addEventListener('mousedown',(e)=>{//При нажатии кнопки "бургер"
-        if(burgerButton.classList.contains('burger__button-active')==true){
-            closeBurger()
+        if(burgerButton.classList.contains('burger__button-active')){
+            closeBurger();
         }
-        else if(burgerButton.classList.contains('burger__button-active')==false){
+        else if(!burgerButton.classList.contains('burger__button-active')){
             openBurger();
+            
         }
+    })
+    burgerBg.addEventListener('mousedown',()=>{
+        closeBurger();
     })
 }
 function openBurger(){
     burgerButton.classList.add('burger__button-active');
     burger[0].classList.add('burger__navigation-active');
-    if(logo.classList.contains('logoMobile')){logo.classList.remove("logoMobile");}
+    if(logo.classList.contains('logoMobile')){
+        logo.style = "transform: translateX(-30%);";
+        
+        
+        logo.classList.remove("logoMobile");
+        
+        setTimeout(()=>{logo.style = "transform: none";},100);
+    }
+    burgerBg.classList.remove('hide');
+    
+    setTimeout(()=>{burgerBg.classList.add('burgerBg');},20);
+    
+    
+    
 }
 function closeBurger(){
     burgerButton.classList.remove('burger__button-active');
     burger[0].classList.remove('burger__navigation-active');
-    if(!logo.classList.contains('logoMobile')){logo.classList.add("logoMobile");}
+    burgerBg.classList.add('hide');
+    burgerBg.classList.remove('burgerBg');
+    if(!logo.classList.contains('logoMobile')){
+        setTimeout(()=>{logo.classList.add("logoMobile");},100);
+    }
 }
-//burgerVisibility==========================
-//==========================burgerType
+//==========================
+//==========================Type
 function burgerType(){
     var logo=document.getElementsByClassName("header__singolo")[0];
     var header = document.getElementsByClassName('header__navigation')
@@ -101,9 +123,6 @@ function burgerType(){
     if(typeOfNav()=="DT"){
         burgerButton.classList.add('hide'); 
         if(header.length==0){
-        
-        
-        
         burger[0].classList.add('header__navigation')
         header[0].classList.remove('burger__navigation')
         if(logo.classList.contains('logoMobile')){logo.classList.remove("logoMobile");}
@@ -112,8 +131,6 @@ function burgerType(){
     if(typeOfNav()=="burger"){
         burgerButton.classList.remove('hide');
         if(burger.length==0){
-           
-            
             header[0].classList.add('burger__navigation')
             burger[0].classList.remove('header__navigation')
             if(!logo.classList.contains('logoMobile')){logo.classList.add("logoMobile");}
@@ -210,10 +227,13 @@ const slider = () => {
 
 const sliderMotion = () =>{
     var content = document.getElementsByClassName('slider__content')[0].children;//Получаем в массив слайды из "хранилища"
+    
     var slides = document.getElementsByClassName('slideWindow')[0].children;//Получаем видимый(средний) и невидимые(левый и правый) части слайдера
     var stopEvent = false;//Разрешаем слушать ивент(фиксировать нажатие на стрелки)
-    var active = 0;//Задаем индекс подгружаемого слайда, который будет активным(видимым)
-
+    var active = 0;//Определяем индекс подгружаемого слайда, который будет активным(видимым)
+    for (let i = 0; i < content.length; i++) {//Даем всему списку слайдов необходимые стили. Скольо бы их не было.
+        content[i].style = "width: 100%;height: 100%;position: absolute;left:0;";
+    }
     const changeActive = (boolean) => {//Изменяем идекс подгружаемого слайда. Если выходит за допустимые значение-обновляем.
         if(boolean){
             active++;
@@ -367,9 +387,9 @@ const setVisibleItems = (arr,cat) => {
 }
 
 //============================================================FORM==========================================================
-
+var form = document.getElementsByTagName('form')[0];
 var formBlock = () => {//Взаимодействие с формой
-    var form = document.getElementsByTagName('form')[0];
+    
     form.getElementsByTagName('button')[0].addEventListener("mousedown", (e)=>{//Нажатие на кнопку формы
     var name = form.name.value;
     var email = form.email.value;
@@ -381,7 +401,7 @@ var formBlock = () => {//Взаимодействие с формой
 }
 var showMsg = (name,email,subject,desctibe) => {//Всплывающее окно
     var msg = document.getElementsByClassName("msg")[0];
-    var ok = msg.getElementsByClassName('button')[0];
+    var ok = msg.getElementsByClassName('msg__window__button')[0];
     var p=msg.children[0].children;
     var mail =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     p[0].innerText = "Письмо отправлено";//-->
@@ -396,23 +416,23 @@ var showMsg = (name,email,subject,desctibe) => {//Всплывающее окн�
     //document.body.style = "overflow: hidden";
     msg.classList.remove('hide');
     document.getElementsByClassName('page')[0].style = "filter: blur(5px);";
-    msg.addEventListener("mouseover",(e)=>{msg.classList.add('ghostMsg')})
-    ok.addEventListener('mousedown',(e)=>{hideMsg()})//Возврат к исходному набору стилей при нажатии "Ок"
+    setTimeout(()=>{msg.classList.add('ghostMsg')},20);
+    ok.addEventListener('mousedown',()=>{
+        form.name.value="";
+        form.email.value="";
+        form.subject.value="";
+        form.describe.value=""; 
+        
+        hideMsg();
+        
+    })//Возврат к исходному набору стилей при нажатии "Ок"
     msg.addEventListener("mousedown",(e)=>{if(e.target==msg)hideMsg()})//-->Нажатии на область вокруг окошка
     const hideMsg = () => {
         msg.classList.add('hide');
         msg.classList.remove('ghostMsg');
         document.getElementsByClassName('page')[0].style = "filter: none;";
-        var form = document.getElementsByTagName('form')[0];
         
         
-        //document.body.style = "overflow: visible";
-        
-        form.name.value="";
-        form.email.value="";
-        form.subject.value="";
-        form.describe.value="";
-      
     }
 }
 
