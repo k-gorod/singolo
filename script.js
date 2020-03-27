@@ -140,7 +140,7 @@ const moveNav = () => {
         if(e.target!=document.getElementsByTagName("NAV")[0]&&e.target!=document.getElementsByTagName("UL")[0]){
             //^Обработка мисскликов
         movePage(e.target.innerText.toLowerCase())}
-        if(cls=="burger__navigation"&&e.target.classList[0]!="burger__navigation"){closeBurger()}
+        if(typeOfNav()=="burger"&&e.target.classList[0]!="burger__navigation"){closeBurger()}
         console.log()
     })
 }
@@ -155,7 +155,7 @@ const interactiveHeader = () => {
         logo.addEventListener('mousedown',() => {
             movePage("home");//При нажатии на логотип возвращаеся на верх
         })
-        if(document.documentElement.scrollTop<=40){//Если страница на самом верху
+        if(document.documentElement.scrollTop<=40||typeOfNav()=="burger"){//Если страница на самом верху
             //Возвращаем дефолт стилии всех элементов
             logo.children[0].children[0].style = defaultStatus;
             navToDefault(logo);
