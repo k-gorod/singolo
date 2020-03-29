@@ -7,7 +7,7 @@ window.onload = function() {//Действия после загрузки ст�
     slider();
     portfolio();
     formBlock();
-    response();
+    responsive();
 }
 
 window.onscroll = function() {//Реакция на скролл
@@ -16,30 +16,24 @@ window.onscroll = function() {//Реакция на скролл
     activeNavByScroll();//Активируем нав, соответствующий болку, который видим
 }
 window.addEventListener('resize',() => {
-    response();
+    responsive();
     interactiveHeader()
 })
 function typeOfNav(){
-    
     var width = document.getElementsByClassName('page')[0].getBoundingClientRect().width;
-    return (width<600?
-            "burger":
-            "DT")
+    return width<600?"burger":"DT" // Если ширина page меньше 600-возвращает burger, иначе Desktop
 }
-function response(){
+function responsive(){
     var width = document.getElementsByClassName('page')[0].getBoundingClientRect().width;
     //var blocks = document.getElementsByTagName('SECTION')
     
-    if(width<=500){blockHeight('portfolio',width,225.06);}
+    if(width<=500){blockHeight('portfolio',width,225.06);}//Высота на кажды брейк для портфолио
     else if(width<=600){blockHeight('portfolio',width,200);}
     else if(width<=768){blockHeight('portfolio',width,142.5);}
-    else if(width<=1020){
-        
-        blockHeight('portfolio',width,79,-20);
-    }
+    else if(width<=1020){blockHeight('portfolio',width,79,-20);}
     
     
-    blockHeight('slider',width,58.82);
+    blockHeight('slider',width,58.82);//Высота слайдера
     burgerType()
     interactiveHeader()
 }
@@ -71,8 +65,11 @@ var logo=document.getElementsByClassName("header__singolo")[0];
 var burger = document.getElementsByClassName('burger__navigation');
 var burgerButton = document.getElementsByClassName('burger__button')[0];
 var burgerBg = document.getElementsByClassName("msg")[0];
+
 function burgerVisibility(){
+
     burgerButton.addEventListener('mousedown',(e)=>{//При нажатии кнопки "бургер"
+    
         if(burgerButton.classList.contains('burger__button-active')){
             closeBurger();
         }
@@ -325,6 +322,7 @@ const turnOnOffPhone=()=>{//Телефона реализованы 2мя спо
                 black.classList.add('black');
                 apnd.append(black);
                 e.target.parentElement.append(apnd);
+                setTimeout(()=>{black.style = "opacity:1"},20);
         }
         if(e.target.name=="iPhoneH"){
             var apnd = document.createElement("div");
@@ -333,9 +331,12 @@ const turnOnOffPhone=()=>{//Телефона реализованы 2мя спо
                 black.classList.add('black');
                 apnd.append(black);
                 e.target.parentElement.append(apnd);
+                setTimeout(()=>{black.style = "opacity:1"},20);
         }
         if(e.target.classList.contains('black')){
-            e.target.parentElement.remove();
+            e.target.style = "opacity:0"
+            
+            setTimeout(()=>{e.target.parentElement.remove()},200);
         }
         
     })
@@ -391,7 +392,8 @@ var form = document.getElementsByTagName('form')[0];
 var formBlock = () => {//Взаимодействие с формой
     
     form.getElementsByTagName('button')[0].addEventListener("mousedown", (e)=>{//Нажатие на кнопку формы
-    var name = form.name.value;
+    e.preventDefault();
+        var name = form.name.value;
     var email = form.email.value;
     var subject = form.subject.value;
     var describe= form.describe.value;
@@ -418,10 +420,7 @@ var showMsg = (name,email,subject,desctibe) => {//Всплывающее окн�
     document.getElementsByClassName('page')[0].style = "filter: blur(5px);";
     setTimeout(()=>{msg.classList.add('ghostMsg')},20);
     ok.addEventListener('mousedown',()=>{
-        form.name.value="";
-        form.email.value="";
-        form.subject.value="";
-        form.describe.value=""; 
+        
         
         hideMsg();
         
@@ -431,7 +430,10 @@ var showMsg = (name,email,subject,desctibe) => {//Всплывающее окн�
         msg.classList.add('hide');
         msg.classList.remove('ghostMsg');
         document.getElementsByClassName('page')[0].style = "filter: none;";
-        
+        form.name.value="";
+        form.email.value="";
+        form.subject.value="";
+        form.describe.value=""; 
         
     }
 }
