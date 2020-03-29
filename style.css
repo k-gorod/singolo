@@ -1029,9 +1029,11 @@ img, h1 {
 
   .slider__leftArr {
     width: 14px;
+    left: 2.3%;
   }
   .slider__rightArr {
     width: 14px;
+    right: 2.3%;
   }
 
   .services {
@@ -1056,7 +1058,7 @@ img, h1 {
     margin: 19px 0 0 0px;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(4, 1fr);
-    grid-gap: 13px;
+    grid-gap: 14px;
   }
 
   .about__head h1 {
