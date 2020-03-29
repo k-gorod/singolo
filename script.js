@@ -367,11 +367,25 @@ const picSort = (cat) => {//Сортировка по выбранной кат�
     setVisibleItems(cellList,cat.toLowerCase());
 
 }
-
-
+function addMark(mrk){
+    var span = document.createElement('SPAN');
+    span.innerText = mrk;
+    return span;
+}
+function marksOfPic(cell){
+    var arr = ['web','graphic','artwork']
+    var div = document.createElement('DIV')
+    for (let i = 0; i < arr.length; i++) {
+        if(cell.classList.contains(arr[i])){div.append(addMark(arr[i]));}
+    }
+    return div;
+}
 const interactivePictures = () => {
     var cellGrid =document.getElementsByClassName("portfolio__grid")[0];//сетка
     var cellList =cellGrid.children;//Ячейки сетки
+    for (let i = 0; i < cellList.length; i++) {
+        cellList[i].append(marksOfPic(cellList[i]));
+    }
     setVisibleItems(cellList,"all");//Первая сортировка(показываются все первые 12 элементов)
     cellGrid.addEventListener('mousedown',(e)=>{
     var cls = "activePic" ;
@@ -420,7 +434,7 @@ var showMsg = (name,email,subject,desctibe) => {//Всплывающее окн�
     document.getElementsByClassName('page')[0].style = "filter: blur(5px);";
     setTimeout(()=>{msg.classList.add('ghostMsg')},20);
     ok.addEventListener('mousedown',()=>{
-        
+         
         
         hideMsg();
         
