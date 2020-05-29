@@ -138,6 +138,7 @@ function burgerType(){
 
 const activeNavByScroll = () => {//Активируем Нав посредством скролла
     var navs = document.getElementsByClassName("header__list")[0].children;
+
     for (let i = 0; i < navs.length; i++) {
         if(navs[i].children[0].innerText.toLowerCase() == whatBlockWeSee().classList[0]){
             //Сопоставляем содержимый навом текст, с классом блока который видим сейчас.
@@ -348,6 +349,7 @@ const portfolio = () => {
 }
 const interactiveCategories = () => {
     var categories = document.getElementsByClassName("portfolio__categories")[0];
+    
     categories.addEventListener('mousedown', (e)=>{
         var cls = "activeCat";
         var active;
